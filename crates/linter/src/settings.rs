@@ -11,6 +11,7 @@ use crate::rule::AssertDescriptionConfig;
 use crate::rule::AssertionStyleConfig;
 use crate::rule::BlockStatementConfig;
 use crate::rule::BracedStringInterpolationConfig;
+use crate::rule::CapitalPDangitConfig;
 use crate::rule::ClassNameConfig;
 use crate::rule::CombineConsecutiveIssetsConfig;
 use crate::rule::Config;
@@ -25,6 +26,7 @@ use crate::rule::DisallowedTypeInstantiationConfig;
 use crate::rule::DiscouragedWpFunctionsConfig;
 use crate::rule::EnqueuedResourceParametersConfig;
 use crate::rule::EnqueuedResourcesConfig;
+use crate::rule::DontExtractConfig;
 use crate::rule::EnumNameConfig;
 use crate::rule::ExcessiveNestingConfig;
 use crate::rule::ExcessiveParameterListConfig;
@@ -248,12 +250,14 @@ pub struct RulesSettings {
     pub assertion_style: RuleSettings<AssertionStyleConfig>,
     pub block_statement: RuleSettings<BlockStatementConfig>,
     pub braced_string_interpolation: RuleSettings<BracedStringInterpolationConfig>,
+    pub capital_p_dangit: RuleSettings<CapitalPDangitConfig>,
     pub class_name: RuleSettings<ClassNameConfig>,
     pub combine_consecutive_issets: RuleSettings<CombineConsecutiveIssetsConfig>,
     pub constant_name: RuleSettings<ConstantNameConfig>,
     pub cyclomatic_complexity: RuleSettings<CyclomaticComplexityConfig>,
     pub disallowed_functions: RuleSettings<DisallowedFunctionsConfig>,
     pub disallowed_type_instantiation: RuleSettings<DisallowedTypeInstantiationConfig>,
+    pub dont_extract: RuleSettings<DontExtractConfig>,
     pub enum_name: RuleSettings<EnumNameConfig>,
     pub excessive_nesting: RuleSettings<ExcessiveNestingConfig>,
     pub excessive_parameter_list: RuleSettings<ExcessiveParameterListConfig>,
