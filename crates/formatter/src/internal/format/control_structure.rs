@@ -317,9 +317,12 @@ where
                 }
             }
 
+            let parenthesis_line =
+                if f.settings.space_within_control_parenthesis { Line::default() } else { Line::soft() };
+
             contents.push(Document::Group(Group::new(vec_in![f.arena;
                 Document::Indent(vec_in![f.arena;
-                    Document::Line(Line::soft()),
+                    Document::Line(parenthesis_line),
                     format_expressions(f, self.initializations.as_slice()),
                     Document::String(b";"),
                     if self.conditions.is_empty() { Document::empty() } else { Document::Line(Line::default()) },
@@ -328,7 +331,7 @@ where
                     if self.increments.is_empty() { Document::empty() } else { Document::Line(Line::default()) },
                     format_expressions(f, self.increments.as_slice()),
                 ]),
-                Document::Line(Line::soft()),
+                Document::Line(parenthesis_line),
             ])));
 
             contents.push(format_token(f, self.right_parenthesis, b")"));
@@ -578,11 +581,13 @@ where
                 self.foreach.format(f),
                 Document::space(),
                 format_token(f, self.left_parenthesis, b"("),
+                misc::control_parenthesis_spacing(f),
                 self.expression.format(f),
                 Document::space(),
                 self.r#as.format(f),
                 Document::space(),
                 self.target.format(f),
+                misc::control_parenthesis_spacing(f),
                 format_token(f, self.right_parenthesis, b")"),
                 self.body.format(f),
             ])

@@ -818,6 +818,16 @@ where
     }
 }
 
+/// A space document within non-empty control-structure parentheses when
+/// `space_within_control_parenthesis` is enabled, nothing otherwise.
+#[inline]
+pub(super) fn control_parenthesis_spacing<'arena, A>(f: &FormatterState<'_, 'arena, A>) -> Document<'arena, A>
+where
+    A: Arena,
+{
+    if f.settings.space_within_control_parenthesis { Document::space() } else { Document::empty() }
+}
+
 pub(super) fn print_condition<'arena, A>(
     f: &mut FormatterState<'_, 'arena, A>,
     left_parenthesis: Span,
@@ -855,21 +865,30 @@ where
         Document::Group(Group::new(vec_in![f.arena;
             Document::space(),
             format_token(f, left_parenthesis, b"("),
+            control_parenthesis_spacing(f),
             condition.format(f),
+            control_parenthesis_spacing(f),
             format_token(f, right_parenthesis, b")"),
         ]))
     } else {
         let group_id = f.next_id();
+        let parenthesis_line = if must_break {
+            Line::hard()
+        } else if f.settings.space_within_control_parenthesis {
+            Line::default()
+        } else {
+            Line::soft()
+        };
 
         Document::Group(
             Group::new(vec_in![f.arena;
                 Document::space(),
                 format_token(f, left_parenthesis, b"("),
                 Document::IndentIfBreak(IndentIfBreak::new(group_id, vec_in![f.arena;
-                    Document::Line(if must_break { Line::hard() } else { Line::soft() }),
+                    Document::Line(parenthesis_line),
                     condition.format(f),
                 ])),
-                Document::Line(if must_break { Line::hard() } else { Line::soft() }),
+                Document::Line(parenthesis_line),
                 format_token(f, right_parenthesis, b")"),
             ])
             .with_id(group_id)

@@ -504,6 +504,8 @@ test_case!(idempotency_corpus_phparkitect_arch_rule);
 test_case!(idempotency_corpus_apiplatform_schema_property);
 test_case!(idempotency_corpus_apiplatform_type_factory);
 test_case!(idempotency_corpus_symfony_json_streamer);
+test_case!(space_within_parenthesis);
+test_case!(wordpress_preset);
 
 /// PHP identifiers are allowed to contain any byte ≥ 0x80, so a class name
 /// like `Café` is valid even when the source file is Latin-1 (or any other
