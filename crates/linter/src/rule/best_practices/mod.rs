@@ -1,4 +1,6 @@
 pub mod combine_consecutive_issets;
+pub mod enqueued_resource_parameters;
+pub mod enqueued_resources;
 pub mod final_controller;
 pub mod loop_does_not_iterate;
 pub mod middleware_in_routes;
@@ -47,6 +49,8 @@ pub mod use_wp_functions;
 pub mod yoda_conditions;
 
 pub use combine_consecutive_issets::*;
+pub use enqueued_resource_parameters::*;
+pub use enqueued_resources::*;
 pub use final_controller::*;
 pub use loop_does_not_iterate::*;
 pub use middleware_in_routes::*;

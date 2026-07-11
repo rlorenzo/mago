@@ -73,9 +73,10 @@ where
         return find(context.lookup_name(function_identifier));
     }
 
-    // Case 2: Unqualified name. This matches calls in the global namespace
-    // or provides a match for the global fallback.
-    if let Some(matched) = find(function_identifier.value()) {
+    // Case 2: Unqualified or fully qualified name. This matches calls in the global
+    // namespace or provides a match for the global fallback.
+    let name = function_identifier.value();
+    if let Some(matched) = find(name.strip_prefix(b"\\").unwrap_or(name)) {
         return Some(matched);
     }
 
