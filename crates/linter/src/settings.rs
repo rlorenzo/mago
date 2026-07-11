@@ -204,6 +204,8 @@ use crate::rule::UseWpFunctionsConfig;
 use crate::rule::ValidDocblockConfig;
 use crate::rule::ValidatedSanitizedInputConfig;
 use crate::rule::VariableNameConfig;
+use crate::rule::WpDateTimeConfig;
+use crate::rule::WpDeprecatedClassesConfig;
 use crate::rule::WpDeprecatedFunctionsConfig;
 use crate::rule::WpI18nConfig;
 use crate::rule::YodaConditionsConfig;
@@ -432,6 +434,8 @@ pub struct RulesSettings {
     pub slow_db_query: RuleSettings<SlowDbQueryConfig>,
     pub posts_per_page: RuleSettings<PostsPerPageConfig>,
     pub discouraged_wp_functions: RuleSettings<DiscouragedWpFunctionsConfig>,
+    pub wp_date_time: RuleSettings<WpDateTimeConfig>,
+    pub wp_deprecated_classes: RuleSettings<WpDeprecatedClassesConfig>,
     pub no_direct_db_query: RuleSettings<NoDirectDbQueryConfig>,
     pub no_implicit_model_query: RuleSettings<NoImplicitModelQueryConfig>,
     pub no_db_schema_change: RuleSettings<NoDbSchemaChangeConfig>,
