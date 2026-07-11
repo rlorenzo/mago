@@ -239,7 +239,13 @@ where
         let argument_doc = argument.format(f);
         let right_parenthesis = format_token(f, argument_list.right_parenthesis, b")");
 
-        return Document::Array(vec_in![f.arena; left_parenthesis, argument_doc, right_parenthesis]);
+        return Document::Array(vec_in![f.arena;
+            left_parenthesis,
+            call_parenthesis_spacing(f),
+            argument_doc,
+            call_parenthesis_spacing(f),
+            right_parenthesis,
+        ]);
     }
 
     let mut contents = vec_in![f.arena; clone_in_arena(f.arena, &left_parenthesis)];
@@ -375,7 +381,7 @@ where
                 Group::new(vec_in![f.arena;
                     clone_in_arena(f.arena, &left_parenthesis),
                     Document::IndentIfBreak(IndentIfBreak::new(group_id, vec_in![f.arena;
-                        Document::Line(Line::soft()),
+                        Document::Line(call_parenthesis_line(f)),
                         Document::Group(Group::new(vec_in![f.arena; clone_in_arena(f.arena, &single_argument)])),
                     ])),
                     if f.trailing_comma_for(Feature::TrailingCommaInFunctionCalls) {
@@ -387,14 +393,21 @@ where
                 ])
                 .with_id(group_id),
             ),
-            Document::Group(Group::new(vec_in![f.arena; left_parenthesis, single_argument, right_parenthesis])),
+            Document::Group(Group::new(vec_in![f.arena;
+                left_parenthesis,
+                call_parenthesis_spacing(f),
+                single_argument,
+                right_parenthesis,
+            ])),
         ));
     }
 
     if should_inline {
         return Document::Group(Group::new(vec_in![f.arena;
             left_parenthesis,
+            call_parenthesis_spacing(f),
             Document::Group(Group::new(Document::join(f.arena, formatted_arguments, Separator::CommaSpace))),
+            call_parenthesis_spacing(f),
             print_right_parenthesis(f, dangling_comments.as_ref(), &right_parenthesis, Some(false)),
         ]));
     }
@@ -415,6 +428,7 @@ where
                 Document::Group(Group::conditional(
                     vec_in![f.arena;
                         clone_in_arena(f.arena, &left_parenthesis),
+                        call_parenthesis_spacing(f),
                         Document::Group(Group::new(vec_in![f.arena; first_argument]).with_break_mode(BreakMode::Force)),
                         Document::String(b", "),
                         last_argument,
@@ -429,6 +443,7 @@ where
             Document::Group(Group::conditional(
                 vec_in![f.arena;
                     clone_in_arena(f.arena, &left_parenthesis),
+                    call_parenthesis_spacing(f),
                     clone_in_arena(f.arena, &first_argument),
                     Document::String(b", "),
                     clone_in_arena(f.arena, &last_argument),
@@ -437,6 +452,7 @@ where
                 vec_in![f.arena;
                     Document::Array(vec_in![f.arena;
                         clone_in_arena(f.arena, &left_parenthesis),
+                        call_parenthesis_spacing(f),
                         Document::Group(Group::new(vec_in![f.arena; first_argument]).with_break_mode(BreakMode::Force)),
                         Document::String(b", "),
                         last_argument,
@@ -466,6 +482,7 @@ where
             Document::Group(Group::conditional(
                 vec_in![f.arena;
                     clone_in_arena(f.arena, &left_parenthesis),
+                    call_parenthesis_spacing(f),
                     Document::Array(first_arguments),
                     Document::Group(Group::new(vec_in![f.arena; last_argument]).with_break_mode(BreakMode::Force)),
                     print_right_parenthesis(f, dangling_comments.as_ref(), &right_parenthesis, None),
@@ -480,7 +497,7 @@ where
     let mut printed_arguments = get_printed_arguments(f, false, 0);
 
     let group_id = f.next_id();
-    printed_arguments.insert(0, Document::Line(Line::soft()));
+    printed_arguments.insert(0, Document::Line(call_parenthesis_line(f)));
     contents.push(Document::IndentIfBreak(IndentIfBreak::new(group_id, printed_arguments)));
     if f.trailing_comma_for(Feature::TrailingCommaInFunctionCalls) {
         contents.push(Document::IfBreak(IfBreak::then(f.arena, Document::String(b","))));
@@ -546,7 +563,7 @@ where
                 contents.push(Document::Line(Line::hard()));
             }
             None => {
-                contents.push(Document::Line(Line::soft()));
+                contents.push(Document::Line(call_parenthesis_line(f)));
             }
             _ => { /* nothing */ }
         }
@@ -555,6 +572,27 @@ where
     contents.push(clone_in_arena(f.arena, right_parenthesis));
 
     Document::Array(contents)
+}
+
+/// A space document within non-empty call parentheses when
+/// `space_within_call_parenthesis` is enabled, nothing otherwise.
+#[inline]
+pub(super) fn call_parenthesis_spacing<'arena, A>(f: &FormatterState<'_, 'arena, A>) -> Document<'arena, A>
+where
+    A: Arena,
+{
+    if f.settings.space_within_call_parenthesis { Document::space() } else { Document::empty() }
+}
+
+/// The line separating non-empty call parentheses from their arguments: a soft line
+/// by default, or a default line (space when flat) when `space_within_call_parenthesis`
+/// is enabled.
+#[inline]
+fn call_parenthesis_line<A>(f: &FormatterState<'_, '_, A>) -> Line
+where
+    A: Arena,
+{
+    if f.settings.space_within_call_parenthesis { Line::default() } else { Line::soft() }
 }
 
 #[inline]

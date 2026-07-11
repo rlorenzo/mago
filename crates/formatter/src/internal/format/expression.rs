@@ -604,6 +604,8 @@ where
             let mut contents = vec_in![f.arena; self.isset.format(f), Document::String(b"(")];
 
             if !self.values.is_empty() {
+                let parenthesis_line =
+                    if f.settings.space_within_call_parenthesis { Line::default() } else { Line::soft() };
                 let mut values = Document::join(f.arena, self.values.iter().map(|v| v.format(f)), Separator::CommaLine);
 
                 // `isset()` accepts a trailing comma since the same version as function calls (7.3)
@@ -611,10 +613,10 @@ where
                     values.push(Document::IfBreak(IfBreak::then(f.arena, Document::String(b","))));
                 }
 
-                values.insert(0, Document::Line(Line::soft()));
+                values.insert(0, Document::Line(parenthesis_line));
 
                 contents.push(Document::Indent(values));
-                contents.push(Document::Line(Line::soft()));
+                contents.push(Document::Line(parenthesis_line));
             }
 
             contents.push(Document::String(b")"));
@@ -632,10 +634,14 @@ fn print_keyword_parenthesized_value<'arena, A>(
 where
     A: Arena,
 {
+    let space_within_parenthesis = f.settings.space_within_call_parenthesis;
+
     Document::Group(Group::new(vec_in![f.arena;
         keyword,
         Document::String(b"("),
+        if space_within_parenthesis { Document::space() } else { Document::empty() },
         value,
+        if space_within_parenthesis { Document::space() } else { Document::empty() },
         Document::String(b")"),
     ]))
 }
