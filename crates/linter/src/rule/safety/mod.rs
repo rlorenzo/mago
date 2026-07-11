@@ -1,4 +1,5 @@
 pub mod dont_extract;
+pub mod global_variables_override;
 pub mod no_error_control_operator;
 pub mod no_eval;
 pub mod no_ffi;
@@ -10,6 +11,7 @@ pub mod no_shell_execute_string;
 pub mod no_unsafe_finally;
 
 pub use dont_extract::*;
+pub use global_variables_override::*;
 pub use no_error_control_operator::*;
 pub use no_eval::*;
 pub use no_ffi::*;
