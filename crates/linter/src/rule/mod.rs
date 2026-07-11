@@ -281,6 +281,7 @@ define_rules! {
     RedundantStatic(redundant_static @ RedundantStaticRule),
     NoPhpTagTerminator(no_php_tag_terminator @ NoPhpTagTerminatorRule),
     NonceVerification(nonce_verification @ NonceVerificationRule),
+    WpI18n(wp_i18n @ WpI18nRule),
     NoNoop(no_noop @ NoNoopRule),
     NoMultiAssignments(no_multi_assignments @ NoMultiAssignmentsRule),
     NoNegatedTernary(no_negated_ternary @ NoNegatedTernaryRule),
