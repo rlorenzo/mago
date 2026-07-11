@@ -248,7 +248,7 @@ where
     }
 }
 
-fn is_static_wpdb_property(expr: &Expression) -> bool {
+pub(super) fn is_static_wpdb_property(expr: &Expression) -> bool {
     match expr {
         Expression::Access(Access::Property(pa)) => {
             is_wpdb_variable(pa.object) && matches!(pa.property, ClassLikeMemberSelector::Identifier(_))

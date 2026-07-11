@@ -153,6 +153,7 @@ use crate::rule::PreferTimestampFactoryConfig;
 use crate::rule::PreferViewArrayConfig;
 use crate::rule::PreferWhileLoopConfig;
 use crate::rule::PreparedSqlConfig;
+use crate::rule::PreparedSqlPlaceholdersConfig;
 use crate::rule::PropertyNameConfig;
 use crate::rule::PslArrayFunctionsConfig;
 use crate::rule::PslDataStructuresConfig;
@@ -265,6 +266,7 @@ pub struct RulesSettings {
     pub deprecated_shell_execute_string: RuleSettings<DeprecatedShellExecuteStringConfig>,
     pub deprecated_switch_semicolon: RuleSettings<DeprecatedSwitchSemicolonConfig>,
     pub prepared_sql: RuleSettings<PreparedSqlConfig>,
+    pub prepared_sql_placeholders: RuleSettings<PreparedSqlPlaceholdersConfig>,
     pub prefer_anonymous_migration: RuleSettings<PreferAnonymousMigrationConfig>,
     pub prefer_array_validation_rules: RuleSettings<PreferArrayValidationRulesConfig>,
     pub prefer_casts_method: RuleSettings<PreferCastsMethodConfig>,
