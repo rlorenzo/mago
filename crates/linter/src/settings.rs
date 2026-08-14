@@ -196,6 +196,7 @@ use crate::rule::UseWpFunctionsConfig;
 use crate::rule::ValidDocblockConfig;
 use crate::rule::ValidatedSanitizedInputConfig;
 use crate::rule::VariableNameConfig;
+use crate::rule::WpDeprecatedFunctionsConfig;
 use crate::rule::WpI18nConfig;
 use crate::rule::YodaConditionsConfig;
 
@@ -422,6 +423,7 @@ pub struct RulesSettings {
     pub no_db_schema_change: RuleSettings<NoDbSchemaChangeConfig>,
     pub no_unescaped_output: RuleSettings<NoUnescapedOutputConfig>,
     pub no_roles_as_capabilities: RuleSettings<NoRolesAsCapabilitiesConfig>,
+    pub wp_deprecated_functions: RuleSettings<WpDeprecatedFunctionsConfig>,
     pub missing_docs: RuleSettings<MissingDocsConfig>,
     pub no_literal_namespace_string: RuleSettings<NoLiteralNamespaceStringConfig>,
 }
