@@ -389,6 +389,8 @@ define_rules! {
     SlowDbQuery(slow_db_query @ SlowDbQueryRule),
     PostsPerPage(posts_per_page @ PostsPerPageRule),
     DiscouragedWpFunctions(discouraged_wp_functions @ DiscouragedWpFunctionsRule),
+    WpDateTime(wp_date_time @ WpDateTimeRule),
+    WpDeprecatedClasses(wp_deprecated_classes @ WpDeprecatedClassesRule),
     NoDirectDbQuery(no_direct_db_query @ NoDirectDbQueryRule),
     NoImplicitModelQuery(no_implicit_model_query @ NoImplicitModelQueryRule),
     NoDbSchemaChange(no_db_schema_change @ NoDbSchemaChangeRule),
