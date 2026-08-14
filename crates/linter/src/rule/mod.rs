@@ -328,6 +328,7 @@ define_rules! {
     ExplicitNullableParam(explicit_nullable_param @ ExplicitNullableParamRule),
     PreferArrowFunction(prefer_arrow_function @ PreferArrowFunctionRule),
     PreparedSql(prepared_sql @ PreparedSqlRule),
+    PreparedSqlPlaceholders(prepared_sql_placeholders @ PreparedSqlPlaceholdersRule),
     PreferEarlyContinue(prefer_early_continue @ PreferEarlyContinueRule),
     PreferEarlyReturn(prefer_early_return @ PreferEarlyReturnRule),
     PreferStaticClosure(prefer_static_closure @ PreferStaticClosureRule),
