@@ -210,7 +210,7 @@ fn classify_limit_value(expression: &Expression, max: i64) -> Option<LimitProble
 
     match expression {
         Expression::Literal(Literal::Integer(integer)) => match integer.value {
-            // An unparseable integer literal overflowed `u64`; it is definitely too large.
+            // An unparsable integer literal overflowed `u64`; it is definitely too large.
             None => Some(LimitProblem::TooLarge),
             Some(value) => {
                 if value > max.unsigned_abs() {
