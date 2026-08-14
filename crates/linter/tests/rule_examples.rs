@@ -10,6 +10,7 @@ use mago_linter::rule::DisallowedEntry;
 use mago_linter::rule::DisallowedFunctionsConfig;
 use mago_linter::rule::DisallowedTypeEntry;
 use mago_linter::rule::DisallowedTypeInstantiationConfig;
+use mago_linter::rule::PrefixAllGlobalsConfig;
 use mago_linter::settings::RuleSettings;
 use mago_linter::settings::RulesSettings;
 use mago_linter::settings::Settings;
@@ -74,6 +75,10 @@ fn test_code_snippet(rule_code: &str, code: &str, should_have_issues: bool) -> R
                     ],
                     ..Default::default()
                 },
+                ..Default::default()
+            },
+            prefix_all_globals: RuleSettings {
+                config: PrefixAllGlobalsConfig { prefixes: vec!["myplugin".to_string()], ..Default::default() },
                 ..Default::default()
             },
             ..RulesSettings::default()
