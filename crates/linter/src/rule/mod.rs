@@ -390,6 +390,8 @@ define_rules! {
     NoDirectDbQuery(no_direct_db_query @ NoDirectDbQueryRule),
     NoImplicitModelQuery(no_implicit_model_query @ NoImplicitModelQueryRule),
     NoDbSchemaChange(no_db_schema_change @ NoDbSchemaChangeRule),
+    EnqueuedResources(enqueued_resources @ EnqueuedResourcesRule),
+    EnqueuedResourceParameters(enqueued_resource_parameters @ EnqueuedResourceParametersRule),
     NoUnescapedOutput(no_unescaped_output @ NoUnescapedOutputRule),
     NoRolesAsCapabilities(no_roles_as_capabilities @ NoRolesAsCapabilitiesRule),
     WpDeprecatedFunctions(wp_deprecated_functions @ WpDeprecatedFunctionsRule),
