@@ -22,6 +22,7 @@ use crate::rule::DeprecatedShellExecuteStringConfig;
 use crate::rule::DeprecatedSwitchSemicolonConfig;
 use crate::rule::DisallowedFunctionsConfig;
 use crate::rule::DisallowedTypeInstantiationConfig;
+use crate::rule::DiscouragedWpFunctionsConfig;
 use crate::rule::EnumNameConfig;
 use crate::rule::ExcessiveNestingConfig;
 use crate::rule::ExcessiveParameterListConfig;
@@ -133,6 +134,7 @@ use crate::rule::NoVariableVariableConfig;
 use crate::rule::NoVoidReferenceReturnConfig;
 use crate::rule::NonceVerificationConfig;
 use crate::rule::OptionalParamOrderConfig;
+use crate::rule::PostsPerPageConfig;
 use crate::rule::PreferAnonymousMigrationConfig;
 use crate::rule::PreferArraySpreadConfig;
 use crate::rule::PreferArrayValidationRulesConfig;
@@ -169,8 +171,10 @@ use crate::rule::ReadableLiteralConfig;
 use crate::rule::RedundantStaticConfig;
 use crate::rule::RequireNamespaceConfig;
 use crate::rule::RequirePregQuoteDelimiterConfig;
+use crate::rule::SafeRedirectConfig;
 use crate::rule::SensitiveParameterConfig;
 use crate::rule::SingleClassPerFileConfig;
+use crate::rule::SlowDbQueryConfig;
 use crate::rule::SortedIntegerKeysConfig;
 use crate::rule::StrContainsConfig;
 use crate::rule::StrStartsWithConfig;
@@ -418,6 +422,10 @@ pub struct RulesSettings {
     pub switch_continue_to_break: RuleSettings<SwitchContinueToBreakConfig>,
     pub no_null_property_init: RuleSettings<NoNullPropertyInitConfig>,
     pub use_wp_functions: RuleSettings<UseWpFunctionsConfig>,
+    pub safe_redirect: RuleSettings<SafeRedirectConfig>,
+    pub slow_db_query: RuleSettings<SlowDbQueryConfig>,
+    pub posts_per_page: RuleSettings<PostsPerPageConfig>,
+    pub discouraged_wp_functions: RuleSettings<DiscouragedWpFunctionsConfig>,
     pub no_direct_db_query: RuleSettings<NoDirectDbQueryConfig>,
     pub no_implicit_model_query: RuleSettings<NoImplicitModelQueryConfig>,
     pub no_db_schema_change: RuleSettings<NoDbSchemaChangeConfig>,
