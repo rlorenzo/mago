@@ -196,8 +196,8 @@ use crate::rule::UseWpFunctionsConfig;
 use crate::rule::ValidDocblockConfig;
 use crate::rule::ValidatedSanitizedInputConfig;
 use crate::rule::VariableNameConfig;
-use crate::rule::WpI18nConfig;
 use crate::rule::WpDeprecatedFunctionsConfig;
+use crate::rule::WpI18nConfig;
 use crate::rule::YodaConditionsConfig;
 
 #[derive(Debug, Clone, JsonSchema)]
