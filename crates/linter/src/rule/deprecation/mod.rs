@@ -5,8 +5,8 @@ pub mod explicit_nullable_param;
 pub mod no_underscore_class;
 pub mod no_void_reference_return;
 pub mod optional_param_order;
-pub mod wp_deprecated_functions;
 pub mod wp_deprecated_classes;
+pub mod wp_deprecated_functions;
 
 pub use deprecated_cast::*;
 pub use deprecated_shell_execute_string::*;
@@ -15,5 +15,5 @@ pub use explicit_nullable_param::*;
 pub use no_underscore_class::*;
 pub use no_void_reference_return::*;
 pub use optional_param_order::*;
-pub use wp_deprecated_functions::*;
 pub use wp_deprecated_classes::*;
+pub use wp_deprecated_functions::*;
