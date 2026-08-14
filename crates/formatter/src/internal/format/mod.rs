@@ -2103,13 +2103,16 @@ where
         wrap!(f, self, TryCatchClause, {
             let hint_group_id = f.next_id();
 
+            let parenthesis_line =
+                if f.settings.space_within_control_parenthesis { Line::default() } else { Line::soft() };
+
             Document::Group(Group::new(vec_in![f.arena;
                 self.catch.format(f),
                 Document::space(),
                 format_token(f, self.left_parenthesis, b"("),
                 Document::Group(Group::new(vec_in![f.arena;
                     Document::IndentIfBreak(IndentIfBreak::new(hint_group_id, {
-                        let mut context = vec_in![f.arena; Document::Line(Line::soft())];
+                        let mut context = vec_in![f.arena; Document::Line(parenthesis_line)];
 
                         context.push(self.hint.format(f));
                         if let Some(variable) = &self.variable {
@@ -2119,7 +2122,7 @@ where
 
                         context
                     })),
-                    Document::Line(Line::soft()),
+                    Document::Line(parenthesis_line),
                 ]).with_id(hint_group_id)),
                 format_token(f, self.right_parenthesis, b")"),
                 Document::space(),
@@ -2249,16 +2252,18 @@ where
             let mut contents = vec_in![f.arena; self.unset.format(f), Document::String(b"(")];
 
             if !self.values.is_empty() {
+                let parenthesis_line =
+                    if f.settings.space_within_call_parenthesis { Line::default() } else { Line::soft() };
                 let mut values = Document::join(f.arena, self.values.iter().map(|v| v.format(f)), Separator::CommaLine);
 
                 if f.settings.trailing_comma {
                     values.push(Document::IfBreak(IfBreak::then(f.arena, Document::String(b","))));
                 }
 
-                values.insert(0, Document::Line(Line::soft()));
+                values.insert(0, Document::Line(parenthesis_line));
 
                 contents.push(Document::Indent(values));
-                contents.push(Document::Line(Line::soft()));
+                contents.push(Document::Line(parenthesis_line));
             }
 
             contents.push(Document::String(b")"));

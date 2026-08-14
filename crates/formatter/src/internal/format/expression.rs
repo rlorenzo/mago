@@ -582,16 +582,18 @@ where
             let mut contents = vec_in![f.arena; self.isset.format(f), Document::String(b"(")];
 
             if !self.values.is_empty() {
+                let parenthesis_line =
+                    if f.settings.space_within_call_parenthesis { Line::default() } else { Line::soft() };
                 let mut values = Document::join(f.arena, self.values.iter().map(|v| v.format(f)), Separator::CommaLine);
 
                 if f.settings.trailing_comma {
                     values.push(Document::IfBreak(IfBreak::then(f.arena, Document::String(b","))));
                 }
 
-                values.insert(0, Document::Line(Line::soft()));
+                values.insert(0, Document::Line(parenthesis_line));
 
                 contents.push(Document::Indent(values));
-                contents.push(Document::Line(Line::soft()));
+                contents.push(Document::Line(parenthesis_line));
             }
 
             contents.push(Document::String(b")"));
@@ -607,10 +609,14 @@ where
 {
     fn format(&'arena self, f: &mut FormatterState<'_, 'arena, A>) -> Document<'arena, A> {
         wrap!(f, self, EmptyConstruct, {
+            let space_within_parenthesis = f.settings.space_within_call_parenthesis;
+
             Document::Group(Group::new(vec_in![f.arena;
                 self.empty.format(f),
                 Document::String(b"("),
+                if space_within_parenthesis { Document::space() } else { Document::empty() },
                 self.value.format(f),
+                if space_within_parenthesis { Document::space() } else { Document::empty() },
                 Document::String(b")"),
             ]))
         })

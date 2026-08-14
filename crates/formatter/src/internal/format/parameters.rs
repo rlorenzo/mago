@@ -113,15 +113,23 @@ where
     }
     f.parameter_state.variable_padding = previous_variable_padding;
 
+    let parenthesis_line = if f.settings.space_within_declaration_parenthesis { Line::default() } else { Line::soft() };
+
     if should_hug_the_parameters {
-        parts.extend(printed);
+        if f.settings.space_within_declaration_parenthesis {
+            parts.insert(1, Document::space());
+            parts.extend(printed);
+            parts.push(Document::space());
+        } else {
+            parts.extend(printed);
+        }
         parts.push(Document::String(b")"));
 
         return Document::Array(parts);
     }
 
     if !parameter_list.parameters.is_empty() {
-        let mut contents = vec_in![f.arena; Document::Line(Line::soft())];
+        let mut contents = vec_in![f.arena; Document::Line(parenthesis_line)];
         contents.extend(printed);
         parts.push(Document::Indent(contents));
 
@@ -135,7 +143,7 @@ where
     {
         parts.push(comments);
     } else {
-        parts.push(Document::Line(Line::soft()));
+        parts.push(Document::Line(parenthesis_line));
     }
 
     parts.push(Document::String(b")"));

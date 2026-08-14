@@ -1061,6 +1061,37 @@ generate_formatter_settings! {
     /// Default: false
     space_within_grouping_parenthesis: bool => "default_false",
 
+    /// Whether to add spaces within the parentheses of function calls and
+    /// call-like constructs (`isset`, `empty`, `unset`).
+    ///
+    /// Empty argument lists are always printed as `()`.
+    ///
+    /// When enabled: `foo( $bar, $baz )`
+    /// When disabled: `foo($bar, $baz)`
+    ///
+    /// Default: false
+    space_within_call_parenthesis: bool => "default_false",
+
+    /// Whether to add spaces within the parentheses of function-like declarations,
+    /// including closure `use` clauses.
+    ///
+    /// Empty parameter lists are always printed as `()`.
+    ///
+    /// When enabled: `function foo( $bar ) use ( $baz )`
+    /// When disabled: `function foo($bar) use ($baz)`
+    ///
+    /// Default: false
+    space_within_declaration_parenthesis: bool => "default_false",
+
+    /// Whether to add spaces within the parentheses of control structures
+    /// (`if`, `elseif`, `while`, `do-while`, `for`, `foreach`, `switch`, `match`, `catch`).
+    ///
+    /// When enabled: `if ( $condition )`
+    /// When disabled: `if ($condition)`
+    ///
+    /// Default: false
+    space_within_control_parenthesis: bool => "default_false",
+
     /// Whether to add an empty line after control structures (if, for, foreach, while, do, switch).
     ///
     /// Note: if an empty line already exists, it will be preserved regardless of this

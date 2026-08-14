@@ -417,8 +417,11 @@ where
                 variables.push(variable.format(f));
             }
 
+            let parenthesis_line =
+                if f.settings.space_within_declaration_parenthesis { Line::default() } else { Line::soft() };
+
             let mut inner_content = Document::join(f.arena, variables, Separator::CommaLine);
-            inner_content.insert(0, Document::Line(Line::soft()));
+            inner_content.insert(0, Document::Line(parenthesis_line));
             if f.settings.trailing_comma {
                 inner_content.push(Document::IfBreak(IfBreak::then(f.arena, Document::String(b","))));
             }
@@ -428,7 +431,7 @@ where
             {
                 contents.push(comments);
             } else {
-                contents.push(Document::Line(Line::soft()));
+                contents.push(Document::Line(parenthesis_line));
             }
 
             contents.push(Document::String(b")"));

@@ -29,7 +29,10 @@ preset = "laravel"
 | `default` | PER-CS compliant. Same as the built-in defaults. |
 | `psr-12` | PSR-12 coding standard. |
 | `laravel` | Laravel Pint's `laravel` preset. |
+| `tempest` | Tempest framework style. |
+| `hack` | `hackfmt` compatible style. |
 | `drupal` | Drupal coding standard. |
+| `wordpress` | WordPress coding standard (tabs, same-line braces, spaces within parentheses). |
 
 Presets accept a version suffix:
 
@@ -52,7 +55,7 @@ print-width = 140
 
 | Option | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
-| `preset` | string | none | One of `default`, `psr-12`, `laravel`, `drupal`. |
+| `preset` | string | none | One of `default`, `psr-12`, `laravel`, `tempest`, `hack`, `drupal`, `wordpress`. |
 | `excludes` | string list | `[]` | Paths or globs the formatter skips. Additive to `source.excludes`. |
 
 `excludes` here adds to the global list. Files matched globally are always excluded; this option lets you exclude additional files from the formatter only.
@@ -210,6 +213,9 @@ public function bar(
 | `space-around-concatenation-binary-operator` | boolean | `true` | Spaces around `.`. |
 | `space-around-assignment-in-declare` | boolean | `false` | Spaces around `=` in `declare`. |
 | `space-within-grouping-parenthesis` | boolean | `false` | Spaces inside grouping parens: `( 1 + 2 )`. |
+| `space-within-call-parenthesis` | boolean | `false` | Spaces inside the parens of calls and call-like constructs (`isset`, `empty`, `unset`): `foo( $bar )`. Empty argument lists stay `()`. |
+| `space-within-declaration-parenthesis` | boolean | `false` | Spaces inside the parens of function-like declarations and closure `use` clauses: `function foo( $bar ) use ( $baz )`. Empty parameter lists stay `()`. |
+| `space-within-control-parenthesis` | boolean | `false` | Spaces inside control-structure parens (`if`, `elseif`, `for`, `foreach`, `while`, `do-while`, `switch`, `match`, `catch`): `if ( $condition )`. |
 
 ## Blank lines
 
