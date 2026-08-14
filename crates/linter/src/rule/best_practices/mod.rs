@@ -1,4 +1,5 @@
 pub mod combine_consecutive_issets;
+pub mod cron_interval;
 pub mod discouraged_wp_functions;
 pub mod enqueued_resource_parameters;
 pub mod enqueued_resources;
@@ -55,6 +56,7 @@ pub mod wp_i18n;
 pub mod yoda_conditions;
 
 pub use combine_consecutive_issets::*;
+pub use cron_interval::*;
 pub use discouraged_wp_functions::*;
 pub use enqueued_resource_parameters::*;
 pub use enqueued_resources::*;
