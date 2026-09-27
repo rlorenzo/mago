@@ -152,6 +152,7 @@ use crate::rule::PreferTestAttributeConfig;
 use crate::rule::PreferTimestampFactoryConfig;
 use crate::rule::PreferViewArrayConfig;
 use crate::rule::PreferWhileLoopConfig;
+use crate::rule::PrefixAllGlobalsConfig;
 use crate::rule::PreparedSqlConfig;
 use crate::rule::PropertyNameConfig;
 use crate::rule::PslArrayFunctionsConfig;
@@ -308,6 +309,7 @@ pub struct RulesSettings {
     pub no_php_tag_terminator: RuleSettings<NoPhpTagTerminatorConfig>,
     pub nonce_verification: RuleSettings<NonceVerificationConfig>,
     pub wp_i18n: RuleSettings<WpI18nConfig>,
+    pub prefix_all_globals: RuleSettings<PrefixAllGlobalsConfig>,
     pub no_noop: RuleSettings<NoNoopConfig>,
     pub no_only: RuleSettings<NoOnlyConfig>,
     pub no_multi_assignments: RuleSettings<NoMultiAssignmentsConfig>,
