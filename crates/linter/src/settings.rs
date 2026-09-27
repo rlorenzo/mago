@@ -17,6 +17,7 @@ use crate::rule::CombineConsecutiveIssetsConfig;
 use crate::rule::Config;
 use crate::rule::ConstantConditionConfig;
 use crate::rule::ConstantNameConfig;
+use crate::rule::CronIntervalConfig;
 use crate::rule::CyclomaticComplexityConfig;
 use crate::rule::DeprecatedCastConfig;
 use crate::rule::DeprecatedShellExecuteStringConfig;
@@ -35,6 +36,7 @@ use crate::rule::ExplicitOctalConfig;
 use crate::rule::FileNameConfig;
 use crate::rule::FinalControllerConfig;
 use crate::rule::FunctionNameConfig;
+use crate::rule::GlobalVariablesOverrideConfig;
 use crate::rule::HalsteadConfig;
 use crate::rule::IdentityComparisonConfig;
 use crate::rule::IneffectiveFormatIgnoreNextConfig;
@@ -202,6 +204,7 @@ use crate::rule::UseSpecificAssertionsConfig;
 use crate::rule::UseSpecificExpectationsConfig;
 use crate::rule::UseWpFunctionsConfig;
 use crate::rule::ValidDocblockConfig;
+use crate::rule::ValidHookNameConfig;
 use crate::rule::ValidatedSanitizedInputConfig;
 use crate::rule::VariableNameConfig;
 use crate::rule::WpDateTimeConfig;
@@ -446,6 +449,9 @@ pub struct RulesSettings {
     pub wp_deprecated_functions: RuleSettings<WpDeprecatedFunctionsConfig>,
     pub missing_docs: RuleSettings<MissingDocsConfig>,
     pub no_literal_namespace_string: RuleSettings<NoLiteralNamespaceStringConfig>,
+    pub valid_hook_name: RuleSettings<ValidHookNameConfig>,
+    pub global_variables_override: RuleSettings<GlobalVariablesOverrideConfig>,
+    pub cron_interval: RuleSettings<CronIntervalConfig>,
 }
 
 impl<C: Config> RuleSettings<C> {

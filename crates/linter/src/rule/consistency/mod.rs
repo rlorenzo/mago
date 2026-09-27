@@ -25,6 +25,7 @@ pub mod no_trailing_space;
 pub mod property_name;
 pub mod string_style;
 pub mod trait_name;
+pub mod valid_hook_name;
 pub mod variable_name;
 
 use mago_syntax_core::part_of_identifier;
@@ -65,6 +66,7 @@ pub use no_trailing_space::*;
 pub use property_name::*;
 pub use string_style::*;
 pub use trait_name::*;
+pub use valid_hook_name::*;
 pub use variable_name::*;
 
 #[cfg(test)]
