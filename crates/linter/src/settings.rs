@@ -152,6 +152,7 @@ use crate::rule::PreferTestAttributeConfig;
 use crate::rule::PreferTimestampFactoryConfig;
 use crate::rule::PreferViewArrayConfig;
 use crate::rule::PreferWhileLoopConfig;
+use crate::rule::PrefixAllGlobalsConfig;
 use crate::rule::PreparedSqlConfig;
 use crate::rule::PropertyNameConfig;
 use crate::rule::PslArrayFunctionsConfig;
@@ -192,6 +193,7 @@ use crate::rule::UseSpecificAssertionsConfig;
 use crate::rule::UseSpecificExpectationsConfig;
 use crate::rule::UseWpFunctionsConfig;
 use crate::rule::ValidDocblockConfig;
+use crate::rule::ValidHookNameConfig;
 use crate::rule::ValidatedSanitizedInputConfig;
 use crate::rule::VariableNameConfig;
 use crate::rule::YodaConditionsConfig;
@@ -306,6 +308,7 @@ pub struct RulesSettings {
     pub redundant_static: RuleSettings<RedundantStaticConfig>,
     pub no_php_tag_terminator: RuleSettings<NoPhpTagTerminatorConfig>,
     pub nonce_verification: RuleSettings<NonceVerificationConfig>,
+    pub prefix_all_globals: RuleSettings<PrefixAllGlobalsConfig>,
     pub no_noop: RuleSettings<NoNoopConfig>,
     pub no_only: RuleSettings<NoOnlyConfig>,
     pub no_multi_assignments: RuleSettings<NoMultiAssignmentsConfig>,
@@ -418,6 +421,7 @@ pub struct RulesSettings {
     pub no_roles_as_capabilities: RuleSettings<NoRolesAsCapabilitiesConfig>,
     pub missing_docs: RuleSettings<MissingDocsConfig>,
     pub no_literal_namespace_string: RuleSettings<NoLiteralNamespaceStringConfig>,
+    pub valid_hook_name: RuleSettings<ValidHookNameConfig>,
 }
 
 impl<C: Config> RuleSettings<C> {

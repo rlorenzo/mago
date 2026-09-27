@@ -281,6 +281,7 @@ define_rules! {
     RedundantStatic(redundant_static @ RedundantStaticRule),
     NoPhpTagTerminator(no_php_tag_terminator @ NoPhpTagTerminatorRule),
     NonceVerification(nonce_verification @ NonceVerificationRule),
+    PrefixAllGlobals(prefix_all_globals @ PrefixAllGlobalsRule),
     NoNoop(no_noop @ NoNoopRule),
     NoMultiAssignments(no_multi_assignments @ NoMultiAssignmentsRule),
     NoNegatedTernary(no_negated_ternary @ NoNegatedTernaryRule),
@@ -394,4 +395,5 @@ define_rules! {
     MissingDocs(missing_docs @ MissingDocsRule),
     NoNullPropertyInit(no_null_property_init @ NoNullPropertyInitRule),
     PreferExplodeOverPregSplit(prefer_explode_over_preg_split @ PreferExplodeOverPregSplitRule),
+    ValidHookName(valid_hook_name @ ValidHookNameRule),
 }
