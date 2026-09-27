@@ -380,6 +380,7 @@ define_rules! {
     SingleClassPerFile(single_class_per_file @ SingleClassPerFileRule),
     YodaConditions(yoda_conditions @ YodaConditionsRule),
     UseWpFunctions(use_wp_functions @ UseWpFunctionsRule),
+    SafeRedirect(safe_redirect @ SafeRedirectRule),
     NoDirectDbQuery(no_direct_db_query @ NoDirectDbQueryRule),
     NoImplicitModelQuery(no_implicit_model_query @ NoImplicitModelQueryRule),
     NoDbSchemaChange(no_db_schema_change @ NoDbSchemaChangeRule),

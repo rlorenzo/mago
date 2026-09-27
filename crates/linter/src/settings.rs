@@ -167,6 +167,7 @@ use crate::rule::ReadableLiteralConfig;
 use crate::rule::RedundantStaticConfig;
 use crate::rule::RequireNamespaceConfig;
 use crate::rule::RequirePregQuoteDelimiterConfig;
+use crate::rule::SafeRedirectConfig;
 use crate::rule::SensitiveParameterConfig;
 use crate::rule::SingleClassPerFileConfig;
 use crate::rule::SortedIntegerKeysConfig;
@@ -411,6 +412,7 @@ pub struct RulesSettings {
     pub switch_continue_to_break: RuleSettings<SwitchContinueToBreakConfig>,
     pub no_null_property_init: RuleSettings<NoNullPropertyInitConfig>,
     pub use_wp_functions: RuleSettings<UseWpFunctionsConfig>,
+    pub safe_redirect: RuleSettings<SafeRedirectConfig>,
     pub no_direct_db_query: RuleSettings<NoDirectDbQueryConfig>,
     pub no_implicit_model_query: RuleSettings<NoImplicitModelQueryConfig>,
     pub no_db_schema_change: RuleSettings<NoDbSchemaChangeConfig>,
