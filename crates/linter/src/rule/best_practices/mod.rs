@@ -44,6 +44,7 @@ pub mod single_class_per_file;
 pub mod sorted_integer_keys;
 pub mod use_compound_assignment;
 pub mod use_wp_functions;
+pub mod wp_i18n;
 pub mod yoda_conditions;
 
 pub use combine_consecutive_issets::*;
@@ -92,4 +93,5 @@ pub use single_class_per_file::*;
 pub use sorted_integer_keys::*;
 pub use use_compound_assignment::*;
 pub use use_wp_functions::*;
+pub use wp_i18n::*;
 pub use yoda_conditions::*;

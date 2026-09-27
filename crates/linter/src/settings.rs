@@ -194,6 +194,7 @@ use crate::rule::UseWpFunctionsConfig;
 use crate::rule::ValidDocblockConfig;
 use crate::rule::ValidatedSanitizedInputConfig;
 use crate::rule::VariableNameConfig;
+use crate::rule::WpI18nConfig;
 use crate::rule::YodaConditionsConfig;
 
 #[derive(Debug, Clone, JsonSchema)]
@@ -306,6 +307,7 @@ pub struct RulesSettings {
     pub redundant_static: RuleSettings<RedundantStaticConfig>,
     pub no_php_tag_terminator: RuleSettings<NoPhpTagTerminatorConfig>,
     pub nonce_verification: RuleSettings<NonceVerificationConfig>,
+    pub wp_i18n: RuleSettings<WpI18nConfig>,
     pub no_noop: RuleSettings<NoNoopConfig>,
     pub no_only: RuleSettings<NoOnlyConfig>,
     pub no_multi_assignments: RuleSettings<NoMultiAssignmentsConfig>,
