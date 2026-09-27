@@ -34,6 +34,8 @@ pub enum FormatterPreset {
     Hack,
     /// Drupal preset.
     Drupal,
+    /// WordPress preset (WordPress Coding Standards compatible).
+    Wordpress,
 }
 
 impl FormatterPreset {
@@ -47,6 +49,7 @@ impl FormatterPreset {
             Self::Tempest => TEMPEST_PRESET,
             Self::Hack => HACK_PRESET,
             Self::Drupal => DRUPAL_PRESET,
+            Self::Wordpress => WORDPRESS_PRESET,
         }
     }
 
@@ -60,6 +63,7 @@ impl FormatterPreset {
             Self::Tempest => "tempest",
             Self::Hack => "hack",
             Self::Drupal => "drupal",
+            Self::Wordpress => "wordpress",
         }
     }
 
@@ -72,13 +76,14 @@ impl FormatterPreset {
             Self::Tempest => "Tempest preset (Tempest framework compatible)",
             Self::Hack => "Hack preset (`hackfmt` compatible)",
             Self::Drupal => "Drupal preset",
+            Self::Wordpress => "WordPress preset (WordPress Coding Standards compatible)",
         }
     }
 
     /// Returns all available presets.
     #[must_use]
     pub const fn all() -> &'static [FormatterPreset] {
-        &[Self::Default, Self::Psr12, Self::Pint, Self::Tempest, Self::Hack, Self::Drupal]
+        &[Self::Default, Self::Psr12, Self::Pint, Self::Tempest, Self::Hack, Self::Drupal, Self::Wordpress]
     }
 }
 
@@ -93,6 +98,7 @@ impl FromStr for FormatterPreset {
             "tempest" | "tempest-php" | "tempest_php" => Ok(Self::Tempest),
             "hack" | "hackfmt" | "hhvm" => Ok(Self::Hack),
             "drupal" => Ok(Self::Drupal),
+            "wordpress" => Ok(Self::Wordpress),
             _ => Err(format!(
                 "unknown preset '{}', available presets: {}",
                 s,
@@ -190,6 +196,9 @@ const DEFAULT_PRESET: FormatSettings = FormatSettings {
     space_around_concatenation_binary_operator: true,
     space_around_assignment_in_declare: false,
     space_within_grouping_parenthesis: false,
+    space_within_call_parenthesis: false,
+    space_within_declaration_parenthesis: false,
+    space_within_control_parenthesis: false,
     empty_line_after_control_structure: false,
     opening_tag_on_own_line: true,
     empty_line_after_opening_tag: true,
@@ -318,5 +327,27 @@ const DRUPAL_PRESET: FormatSettings = FormatSettings {
     empty_line_before_class_like_close: true,
     separate_trait_use: false,
     uppercase_literal_keyword: true,
+    ..DEFAULT_PRESET
+};
+
+/// The WordPress formatter preset (WordPress Coding Standards compatible).
+const WORDPRESS_PRESET: FormatSettings = FormatSettings {
+    use_tabs: true,
+    end_of_line: EndOfLine::Lf,
+    function_brace_style: BraceStyle::SameLine,
+    method_brace_style: BraceStyle::SameLine,
+    classlike_brace_style: BraceStyle::SameLine,
+    preserve_breaking_member_access_chain: true,
+    preserve_breaking_argument_list: true,
+    preserve_breaking_parameter_list: true,
+    preserve_breaking_attribute_list: true,
+    preserve_breaking_conditional_expression: true,
+    preserve_breaking_condition_expression: true,
+    align_assignment_like: true,
+    space_before_arrow_function_parameter_list_parenthesis: true,
+    space_after_logical_not_unary_prefix_operator: true,
+    space_within_call_parenthesis: true,
+    space_within_declaration_parenthesis: true,
+    space_within_control_parenthesis: true,
     ..DEFAULT_PRESET
 };
