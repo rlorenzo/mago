@@ -50,6 +50,7 @@ pub mod slow_db_query;
 pub mod sorted_integer_keys;
 pub mod use_compound_assignment;
 pub mod use_wp_functions;
+pub mod wp_date_time;
 pub mod wp_i18n;
 pub mod yoda_conditions;
 
@@ -105,5 +106,6 @@ pub use slow_db_query::*;
 pub use sorted_integer_keys::*;
 pub use use_compound_assignment::*;
 pub use use_wp_functions::*;
+pub use wp_date_time::*;
 pub use wp_i18n::*;
 pub use yoda_conditions::*;
