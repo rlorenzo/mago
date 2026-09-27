@@ -394,4 +394,5 @@ define_rules! {
     MissingDocs(missing_docs @ MissingDocsRule),
     NoNullPropertyInit(no_null_property_init @ NoNullPropertyInitRule),
     PreferExplodeOverPregSplit(prefer_explode_over_preg_split @ PreferExplodeOverPregSplitRule),
+    GlobalVariablesOverride(global_variables_override @ GlobalVariablesOverrideRule),
 }

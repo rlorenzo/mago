@@ -30,6 +30,7 @@ use crate::rule::ExplicitOctalConfig;
 use crate::rule::FileNameConfig;
 use crate::rule::FinalControllerConfig;
 use crate::rule::FunctionNameConfig;
+use crate::rule::GlobalVariablesOverrideConfig;
 use crate::rule::HalsteadConfig;
 use crate::rule::IdentityComparisonConfig;
 use crate::rule::IneffectiveFormatIgnoreNextConfig;
@@ -418,6 +419,7 @@ pub struct RulesSettings {
     pub no_roles_as_capabilities: RuleSettings<NoRolesAsCapabilitiesConfig>,
     pub missing_docs: RuleSettings<MissingDocsConfig>,
     pub no_literal_namespace_string: RuleSettings<NoLiteralNamespaceStringConfig>,
+    pub global_variables_override: RuleSettings<GlobalVariablesOverrideConfig>,
 }
 
 impl<C: Config> RuleSettings<C> {
