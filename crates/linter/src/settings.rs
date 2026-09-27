@@ -23,6 +23,8 @@ use crate::rule::DeprecatedSwitchSemicolonConfig;
 use crate::rule::DisallowedFunctionsConfig;
 use crate::rule::DisallowedTypeInstantiationConfig;
 use crate::rule::DiscouragedWpFunctionsConfig;
+use crate::rule::EnqueuedResourceParametersConfig;
+use crate::rule::EnqueuedResourcesConfig;
 use crate::rule::EnumNameConfig;
 use crate::rule::ExcessiveNestingConfig;
 use crate::rule::ExcessiveParameterListConfig;
@@ -429,6 +431,8 @@ pub struct RulesSettings {
     pub no_direct_db_query: RuleSettings<NoDirectDbQueryConfig>,
     pub no_implicit_model_query: RuleSettings<NoImplicitModelQueryConfig>,
     pub no_db_schema_change: RuleSettings<NoDbSchemaChangeConfig>,
+    pub enqueued_resources: RuleSettings<EnqueuedResourcesConfig>,
+    pub enqueued_resource_parameters: RuleSettings<EnqueuedResourceParametersConfig>,
     pub no_unescaped_output: RuleSettings<NoUnescapedOutputConfig>,
     pub no_roles_as_capabilities: RuleSettings<NoRolesAsCapabilitiesConfig>,
     pub wp_deprecated_functions: RuleSettings<WpDeprecatedFunctionsConfig>,
